@@ -3,4 +3,5 @@ export type Recipe = {
 	ingredients: string[];
 	steps: string[];
 	difficulty: number;
+	tips: string[];
 };
