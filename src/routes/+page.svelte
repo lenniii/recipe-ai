@@ -39,17 +39,43 @@
 			if (e instanceof Error) error = e;
 		}
 	}
+
+	let image: string = recipeStub.image;
+
+	async function generateImage() {
+		const response = await fetch('/api/generate/image', {
+			method: 'POST',
+			body: JSON.stringify({ prompt: recipe.title }),
+			headers: {
+				'content-type': 'application/json'
+			}
+		});
+		image = (await response.json()).image;
+	}
 </script>
 
 <Section class="flex-1 grid grid-cols-4 grid-rows-4 gap-5">
 	<Section class="bg-base-200 col-span-1 row-span-3 flex flex-col gap-5">
-		<Section class="bg-base-300 flex-1" />
+		<Section class="bg-base-300 flex-1 relative">
+			<picture>
+				<img
+					src={image}
+					alt={recipe.title}
+					loading="lazy"
+					width="512"
+					height="512"
+					class="aspect-square rounded-md inset-0 absolute object-cover w-full h-full"
+				/>
+			</picture>
+		</Section>
 		<Section class="bg-base-300 flex items-center gap-4">
 			<span class="text-lg">Difficolta ricetta:</span>
 			<Rating rating={completionStatus === 'completed' ? recipe.difficulty : 0} maxRating={5} />
 		</Section>
 	</Section>
-	<Section class="bg-base-200 col-span-3 row-span-4 p-5 overflow-x-hidden relative overflow-y-auto max-h-[75vh]">
+	<Section
+		class="bg-base-200 col-span-3 row-span-4 p-5 overflow-x-hidden relative overflow-y-auto max-h-[75vh]"
+	>
 		{#if completionStatus === 'completed'}
 			<Recipe {...recipe} />
 		{:else if completionStatus === 'loading'}
