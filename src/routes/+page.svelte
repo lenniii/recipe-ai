@@ -120,5 +120,8 @@
 		<button class="btn btn-primary w-40" on:click={sendRequest}
 			>genera <Icon icon="clarity:play-solid" /></button
 		>
+		<button class="btn btn-primary" on:click={generateImage}
+			><span>genera immagine </span><Icon icon="clarity:play-solid" /></button
+		>
 	</Section>
 </Section>

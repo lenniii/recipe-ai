@@ -12,16 +12,16 @@
 <div class="flex flex-col text-left gap-5" in:fade>
 	<h1 class="text-center text-3xl font-bold" in:fly|global={{ x: -100 }}>{title}</h1>
 	<h2 class="text-center" in:fly|global={{ x: -100 }}>Ingredienti: {ingredients.join(', ')}</h2>
-		<h3 class="text-xl" in:fade|global={{ delay: 100 * steps.length }}>Istruzioni:</h3>
-		<Section class="bg-base-300 overflow-hidden">
-			<ol class="list-decimal list-inside text-xl space-y-5">
-				{#each steps as step, idx}
-					<li in:fly|global={{ x: -150, delay: 100 * (idx + 1) }}>
-						{step}
-					</li>
-				{/each}
-			</ol>
-		</Section>
+	<h3 class="text-xl" in:fade|global={{ delay: 100 * steps.length }}>Istruzioni:</h3>
+	<Section class="bg-base-300 overflow-hidden">
+		<ol class="list-decimal list-inside text-xl space-y-5">
+			{#each steps as step, idx}
+				<li in:fly|global={{ x: -150, delay: 100 * (idx + 1) }}>
+					{step}
+				</li>
+			{/each}
+		</ol>
+	</Section>
 	{#if tips.length > 0}
 		<h3 class="text-xl" in:fade|global={{ delay: 100 * steps.length }}>Tips & Tricks:</h3>
 		<Section class="bg-base-300 text-xl overflow-hidden">
